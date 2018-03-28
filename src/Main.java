@@ -2,8 +2,14 @@ import decorate.Beverage;
 import decorate.Espresso;
 import decorate.Mocha;
 import decorate.Soy;
+import decorateio.LowerCaseInputStream;
 import observer.CustomObservable;
 import observer.CustomObserver;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class Main {
 
@@ -18,8 +24,25 @@ public class Main {
         */
 
         //装饰模式
+        /*
+        //饮料Demo
         Beverage beverage = new Mocha(new Soy(new Espresso()));
         System.out.println(beverage.getDescription());
         System.out.println(beverage.cost());
+         */
+        //io流Demo
+        int c;
+        try {
+            InputStream in = new LowerCaseInputStream(
+                    new BufferedInputStream(
+                            new FileInputStream("src\\text.txt")));
+            while ((c=in.read())>=0){
+                System.out.print((char) c);
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
