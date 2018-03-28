@@ -3,6 +3,9 @@ import decorate.Espresso;
 import decorate.Mocha;
 import decorate.Soy;
 import decorateio.LowerCaseInputStream;
+import factory.NYPizzaStore;
+import factory.Pizza;
+import factory.PizzaStore;
 import observer.CustomObservable;
 import observer.CustomObserver;
 
@@ -29,7 +32,7 @@ public class Main {
         Beverage beverage = new Mocha(new Soy(new Espresso()));
         System.out.println(beverage.getDescription());
         System.out.println(beverage.cost());
-         */
+
         //io流Demo
         int c;
         try {
@@ -43,6 +46,11 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+         */
 
+        //工厂模式
+        PizzaStore nyPizzaStore = new NYPizzaStore();
+        Pizza cheese = nyPizzaStore.createPizza("cheese");
+        System.out.println(cheese.getName());
     }
 }
