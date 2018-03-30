@@ -8,6 +8,8 @@ import factory.Pizza;
 import factory.PizzaStore;
 import observer.CustomObservable;
 import observer.CustomObserver;
+import singleton.HungrySingleton;
+import singleton.SlackerSingleton;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -17,17 +19,18 @@ import java.io.InputStream;
 public class Main {
 
     public static void main(String[] args) {
-        //观察者模式
         /*
+        //观察者模式
+
         CustomObservable customObservable = new CustomObservable();
         CustomObserver observer1 = new CustomObserver(customObservable);
         CustomObserver observer2 = new CustomObserver(customObservable);
         customObservable.setUser("黄丹丹","22","女");
         customObservable.setUser("甘立冬","？？","男");
         */
-
-        //装饰模式
         /*
+        //装饰模式
+
         //饮料Demo
         Beverage beverage = new Mocha(new Soy(new Espresso()));
         System.out.println(beverage.getDescription());
@@ -48,9 +51,16 @@ public class Main {
         }
          */
 
+        /*
         //工厂模式
         PizzaStore nyPizzaStore = new NYPizzaStore();
         Pizza cheese = nyPizzaStore.createPizza("cheese");
         System.out.println(cheese.getName());
+         */
+
+        //单例模式 饿汉
+        HungrySingleton hungrySingleton = HungrySingleton.getUrgentSingleton();
+        //懒汉
+        SlackerSingleton slackerSingleton = SlackerSingleton.getSlackerSingleton();
     }
 }
