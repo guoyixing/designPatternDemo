@@ -1,3 +1,8 @@
+import command.Command;
+import command.RemoteControl;
+import command.commandlist.StereoOffCommand;
+import command.commandlist.StereoOnwithCDCommand;
+import command.model.Stereo;
 import decorate.Beverage;
 import decorate.Espresso;
 import decorate.Mocha;
@@ -57,10 +62,21 @@ public class Main {
         Pizza cheese = nyPizzaStore.createPizza("cheese");
         System.out.println(cheese.getName());
          */
-
+        /*
         //单例模式 饿汉
         HungrySingleton hungrySingleton = HungrySingleton.getUrgentSingleton();
         //懒汉
         SlackerSingleton slackerSingleton = SlackerSingleton.getSlackerSingleton();
+        */
+
+        //命令模式
+        RemoteControl remoteControl = new RemoteControl();
+        Stereo stereo = new Stereo();
+        Command stereoOffCommand = new StereoOffCommand(stereo);
+        Command stereoOnwithCDCommand = new StereoOnwithCDCommand(stereo);
+        remoteControl.setCommand(0,stereoOnwithCDCommand,stereoOffCommand);
+        remoteControl.onButtonWasPushed(0);
+        remoteControl.offButtonWasPushed(0);
+        remoteControl.undoButtonWasPushed();
     }
 }
