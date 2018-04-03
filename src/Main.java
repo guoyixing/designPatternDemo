@@ -1,3 +1,7 @@
+import adapter.Duck;
+import adapter.MallardDuck;
+import adapter.TurkeyAdapter;
+import adapter.WildTurkey;
 import command.Command;
 import command.RemoteControl;
 import command.commandlist.StereoOffCommand;
@@ -67,8 +71,8 @@ public class Main {
         HungrySingleton hungrySingleton = HungrySingleton.getUrgentSingleton();
         //懒汉
         SlackerSingleton slackerSingleton = SlackerSingleton.getSlackerSingleton();
-        */
 
+        /*
         //命令模式
         RemoteControl remoteControl = new RemoteControl();
         Stereo stereo = new Stereo();
@@ -78,5 +82,19 @@ public class Main {
         remoteControl.onButtonWasPushed(0);
         remoteControl.offButtonWasPushed(0);
         remoteControl.undoButtonWasPushed();
+        */
+
+        //适配器模式
+        MallardDuck mallardDuck = new MallardDuck();
+        WildTurkey wildTurkey = new WildTurkey();
+        TurkeyAdapter turkeyAdapter = new TurkeyAdapter(wildTurkey);
+        testAdapter(mallardDuck);
+        testAdapter(turkeyAdapter);
+
+    }
+
+    static void testAdapter(Duck duck){
+        duck.quack();
+        duck.fly();
     }
 }
